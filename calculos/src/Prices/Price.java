@@ -1,3 +1,4 @@
+package Prices;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -8,13 +9,16 @@ public class Price
 	private Date _dtDate;
 	private double _dbPrice;
 	private double _dbVolume;
-	private double _dbSMA_12;
-	private double _dbSMA_26;
-	private double _dbEMA_12;
-	private double _dbEMA_26;
+	private double _dbSMA_Short;
+	private double _dbSMA_Long;
+	private double _dbEMA_Short;
+	private double _dbEMA_Long;
 	private double _dbMACD;
 	private double _dbMACD_Signal;
 	private double _dbMACD_Diff;
+	private double _dbRSI_avg_Gain;
+	private double _dbRSI_avg_Loss;
+	private double _dbRSI;
 	
 	public Price (Date dtDate, double dbPrice, double dbVolume)
 	{
@@ -38,44 +42,55 @@ public class Price
 		_dbVolume = dbValue;
 	}
 
-	public void setSMA(double dbValue, int nType) 
+	public void setSMA_Short(double dbValue) 
 	{
-		switch(nType)
-		{
-			case 12:
-				_dbSMA_12 = dbValue;
-				break;
-			case 26:
-				_dbSMA_26 = dbValue;
-				break;
-		}
+		_dbSMA_Short = dbValue;
 	}
 	
-	public void setEMA(double dbValue, int nType) 
+	public void setSMA_Long(double dbValue) 
 	{
-		switch(nType)
-		{
-			case 12:
-				_dbEMA_12 = dbValue;
-				break;
-			case 26:
-				_dbEMA_26 = dbValue;
-				break;
-		}
+		_dbSMA_Long = dbValue;
 	}
 
+	public void setEMA_Short(double dbValue) 
+	{
+		_dbEMA_Short = dbValue;
+	}
+	
+	public void setEMA_Long(double dbValue) 
+	{
+		_dbEMA_Long = dbValue;
+	}
 
-	public void setMACD(double _dbMACD) {
+	public void setMACD(double _dbMACD)
+	{
 		this._dbMACD = _dbMACD;
 	}
 
-	public void setMACD_Signal(double _dbMACD_Signal) {
+	public void setMACD_Signal(double _dbMACD_Signal) 
+	{
 		this._dbMACD_Signal = _dbMACD_Signal;
 	}
 
-	public void setMACD_Diff(double _dbMACD_Diff) {
+	public void setMACD_Diff(double _dbMACD_Diff) 
+	{
 		this._dbMACD_Diff = _dbMACD_Diff;
 	}		
+
+	public void setRSI_avg_Gain(double _dbRSI_avg_Gain) 
+	{
+		this._dbRSI_avg_Gain = _dbRSI_avg_Gain;
+	}	
+
+	public void setRSI_avg_Loss(double _dbRSI_avg_Loss) 
+	{
+		this._dbRSI_avg_Loss = _dbRSI_avg_Loss;
+	}		
+
+	public void setRSI(double _dbRSI) 
+	{
+		this._dbRSI = _dbRSI;
+	}	
 	
 	public Date getDate()
 	{
@@ -92,46 +107,54 @@ public class Price
 		return _dbVolume;
 	}
 	
-	public double getSMA(int nType)
+	public double getSMA_Short()
 	{
-		double dbReturn = 0;
-		switch(nType)
-		{
-			case 12:
-				dbReturn = _dbSMA_12;
-				break;
-			case 26:
-				dbReturn = _dbSMA_26;
-				break;
-		}
-		return dbReturn;
+		return _dbSMA_Short;
 	}
 	
-	public double getEMA(int nType)
+	public double getSMA_Long()
 	{
-		double dbReturn = 0;
-		switch(nType)
-		{
-			case 12:
-				dbReturn = _dbEMA_12;
-				break;
-			case 26:
-				dbReturn = _dbEMA_26;
-				break;
-		}
-		return dbReturn;
+		return _dbSMA_Long;
+	}
+	
+	public double getEMA_Short()
+	{
+		return _dbEMA_Short;
+	}
+	
+	public double getEMA_Long()
+	{
+		return _dbEMA_Long;
 	}
 
-	public double getMACD() {
+	public double getMACD() 
+	{
 		return _dbMACD;
 	}
 
-	public double getMACD_Signal() {
+	public double getMACD_Signal() 
+	{
 		return _dbMACD_Signal;
 	}
 
-	public double getMACD_Diff() {
+	public double getMACD_Diff() 
+	{
 		return _dbMACD_Diff;
+	}
+	
+	public double getRSI_avg_Gain() 
+	{
+		return _dbRSI_avg_Gain;
+	}
+	
+	public double getRSI_avg_Loss() 
+	{
+		return _dbRSI_avg_Loss;
+	}
+	
+	public double getRSI() 
+	{
+		return _dbRSI;
 	}
 	
 //	public String toString()
@@ -173,19 +196,11 @@ public class Price
 		String strReturn = "";
 		strReturn += df.format(_dbPrice);
 		strReturn += "\t";
-		strReturn +=  df.format(_dbSMA_12);
+		strReturn +=  df.format(_dbRSI_avg_Gain);
 		strReturn += "\t";
-		strReturn +=  df.format(_dbSMA_26);
+		strReturn +=  df.format(_dbRSI_avg_Loss);
 		strReturn += "\t";
-		strReturn +=  df.format(_dbEMA_12);
-		strReturn += "\t";
-		strReturn +=  df.format(_dbEMA_26);	
-		strReturn += "\t";
-		strReturn +=  df.format(_dbMACD);	
-		strReturn += "\t";
-		strReturn +=  df.format(_dbMACD_Signal);	
-		strReturn += "\t";
-		strReturn +=  df.format(_dbMACD_Diff);	
+		strReturn +=  df.format(_dbRSI);
 		return strReturn;
 	}
 

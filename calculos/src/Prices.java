@@ -18,7 +18,7 @@ public class Prices
 	public String toString()
 	{
 		String strReturn = "";
-		strReturn += "POS\tPrice\tSMA_12\tSMA_26\tEMA_12\tEMA_26\tMACD\tSignal\tDiff\n";
+		strReturn += "POS\tPrice\t\tSMA_12\t\tSMA_26\t\tEMA_12\t\tEMA_26\t\tMACD\t\tSignal\t\tDiff\n";
 		for(int i = 0; i < _pPrices.size(); i++)
 		{
 			strReturn += "(" + (i + 1) + ")\t" + _pPrices.get(i).toString() + "\n";

@@ -1,3 +1,4 @@
+package Prices;
 import java.util.ArrayList;
 
 
@@ -18,7 +19,7 @@ public class Prices
 	public String toString()
 	{
 		String strReturn = "";
-		strReturn += "POS\tPrice\t\tSMA_12\t\tSMA_26\t\tEMA_12\t\tEMA_26\t\tMACD\t\tSignal\t\tDiff\n";
+		strReturn += "POS\tPrice\t\tAvgGAIN\t\tAvgLOSS\t\tRSI_12\n";
 		for(int i = 0; i < _pPrices.size(); i++)
 		{
 			strReturn += "(" + (i + 1) + ")\t" + _pPrices.get(i).toString() + "\n";

@@ -169,7 +169,7 @@ public class Price
 	
 	public String toString()
 	{
-		DecimalFormat df = new DecimalFormat("0.0000"); 	
+		DecimalFormat df = new DecimalFormat("000.0000"); 	
 		String strReturn = "";
 		strReturn += df.format(_dbPrice);
 		strReturn += "\t";

@@ -2,11 +2,15 @@ package Algorithm;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import Algorithm.DecissionEvent.Behavior;
+import Prices.CompactedPrice;
 import Prices.Price;
+import Prices.Prices;
 
 public class DecissionMACD 
 {
@@ -40,19 +44,22 @@ public class DecissionMACD
 		pLastBehavior = Behavior.waitForSignal;
 	}
 	
-	public void proccess(ArrayList<Price> pPrices)
+	public void proccess(Prices pPrices)
 	{
+		Prices pCompactPrices;
 		Price pPrice;
 		Price pPrevPrice;
 		double dbDiff;
-		double dbDiffPrev;	
-		if(pPrices.size() <= 35)
+		double dbDiffPrev;
+		pCompactPrices = compactData(pPrices);
+		
+		if(pCompactPrices.getPrices().size() <= 35)
 		{
 			raiseDecissionEvent(Behavior.waitForSignal, -1);
 			return;
 		}
-		pPrice = pPrices.get(pPrices.size()-1);
-		pPrevPrice = pPrices.get(pPrices.size()-2);
+		pPrice = pCompactPrices.getPrices().get(pCompactPrices.getPrices().size()-1);
+		pPrevPrice = pCompactPrices.getPrices().get(pCompactPrices.getPrices().size()-2);
 		dbDiff 	= pPrice.getMACD_Diff();
 		dbDiffPrev 	= pPrevPrice.getMACD_Diff();
 		
@@ -112,5 +119,36 @@ public class DecissionMACD
 				pLastBehavior = Behavior.waitForSignal;
 			}  
 		}		
+	}
+	
+	private Prices compactData(Prices pPrices)
+	{
+		Calendar dtInitDate;
+		Calendar dtEndDate;
+		Calendar dtPrice;
+		int nSecondCompact = 30;
+		CompactedPrice pCompactedPrice = null;
+		Prices pPricesCompacted = new Prices();
+		dtInitDate = Calendar.getInstance();
+		dtInitDate.setTime(pPrices.getPrices().get(0).getDate());
+		dtEndDate = dtInitDate;
+		dtEndDate.add(Calendar.SECOND, nSecondCompact);
+		for(Price pReadPrice : pPrices.getPrices())
+		{
+			dtPrice = Calendar.getInstance();
+			dtPrice.setTime(pReadPrice.getDate());
+			if(pCompactedPrice == null)
+			{
+				pCompactedPrice = new CompactedPrice(pReadPrice.getDate(), pReadPrice.getPrice(), pReadPrice.getVolume());
+			}
+			pCompactedPrice.addInnerPrice(pReadPrice);
+			if (dtPrice.after(dtEndDate))
+			{
+				pPricesCompacted.getPrices().add(pCompactedPrice);
+				pCompactedPrice = new CompactedPrice(pReadPrice.getDate(), pReadPrice.getPrice(), pReadPrice.getVolume());
+			}
+		}
+		pPricesCompacted.getPrices().add(pCompactedPrice);
+		return pPricesCompacted;
 	}
 }

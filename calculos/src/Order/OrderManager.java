@@ -3,7 +3,7 @@ package Order;
 import Algorithm.DecissionEvent;
 import Algorithm.DecissionListener;
 
-public class Ordermanager implements DecissionListener 
+public class OrderManager implements DecissionListener 
 {
 
 	

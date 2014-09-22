@@ -9,7 +9,7 @@ public class Ejecutar {
 		// TODO Auto-generated method stub
 		Valores valores = new Valores();
 		valores.leerValores();
-//		System.out.println(valores.toString());
+		System.out.println(valores.toString());
 
 	}
 

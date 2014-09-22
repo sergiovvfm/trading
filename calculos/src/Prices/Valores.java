@@ -55,8 +55,8 @@ public class Valores {
 
 				if(i>8){
 					valores.add(leerLineaGoogle(linea));
-					System.out.println(leerLineaGoogle(linea).toString());
-					Thread.sleep(100);
+					//System.out.println(leerLineaGoogle(linea).toString());
+					//Thread.sleep(100);
 				}
 				i++;
 			}

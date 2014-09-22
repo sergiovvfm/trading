@@ -53,7 +53,7 @@ public class Valores {
 			int i = 1;
 			while((linea=br.readLine())!=null){
 
-				if(i>8){
+				if(i>7){
 					valores.add(leerLineaGoogle(linea));
 					//System.out.println(leerLineaGoogle(linea).toString());
 					//Thread.sleep(100);

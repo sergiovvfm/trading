@@ -19,6 +19,8 @@ public class Price
 	private double _dbRSI_avg_Gain;
 	private double _dbRSI_avg_Loss;
 	private double _dbRSI;
+	private double _dbBollinger_Up;
+	private double _dbBollinger_Down;
 	
 	public Price (Date dtDate, double dbPrice, double dbVolume)
 	{
@@ -91,6 +93,16 @@ public class Price
 	{
 		this._dbRSI = _dbRSI;
 	}	
+
+	public void setBollingerUp(double _dbBollinger_Up) 
+	{
+		this._dbBollinger_Up = _dbBollinger_Up;
+	}
+
+	public void setBollingerDown(double _dbBollinger_Down) 
+	{
+		this._dbBollinger_Down = _dbBollinger_Down;
+	}
 	
 	public Date getDate()
 	{
@@ -157,6 +169,16 @@ public class Price
 		return _dbRSI;
 	}
 	
+	public double getBollingerUp() 
+	{
+		return _dbBollinger_Up;
+	}
+	
+	public double getBollingerDown() 
+	{
+		return _dbBollinger_Down;
+	}
+		
 //	public String toString()
 //	{
 //		String strReturn = "";
@@ -196,11 +218,9 @@ public class Price
 		String strReturn = "";
 		strReturn += df.format(_dbPrice);
 		strReturn += "\t";
-		strReturn +=  df.format(_dbRSI_avg_Gain);
+		strReturn +=  df.format(_dbBollinger_Up);
 		strReturn += "\t";
-		strReturn +=  df.format(_dbRSI_avg_Loss);
-		strReturn += "\t";
-		strReturn +=  df.format(_dbRSI);
+		strReturn +=  df.format(_dbBollinger_Down);
 		return strReturn;
 	}
 

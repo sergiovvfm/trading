@@ -9,6 +9,9 @@ import java.util.Date;
 public class Valores {
 
 	private ArrayList<Valor> valores;
+	private String nombre;
+	private Date fechaini;
+	private Date fechafin;
 	private long fechaGuardada;
 		
 	public Valores() {

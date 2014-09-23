@@ -16,6 +16,10 @@ public class Prices
 		return _pPrices;
 	}
 	
+	public void addPrice(Price price)
+	{
+		_pPrices.add(price);
+	}
 	public String toString()
 	{
 		String strReturn = "";
